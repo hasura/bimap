@@ -607,7 +607,7 @@ mapR f (MkBimap left right) =
 Map a strictly increasing function over all left keys in the map.
 /The precondition is not checked./
 /Version 0.3/-}
-mapMonotonic :: (a -> c) -> Bimap a b -> Bimap c b
+mapMonotonic :: Ord c => (a -> c) -> Bimap a b -> Bimap c b
 mapMonotonic f (MkBimap left right) =
     MkBimap (M.mapKeysMonotonic f left) (M.map f right)
 
@@ -615,7 +615,7 @@ mapMonotonic f (MkBimap left right) =
 Map a strictly increasing function over all right keys in the map.
 /The precondition is not checked./
 /Version 0.3/-}
-mapMonotonicR :: (b -> c) -> Bimap a b -> Bimap a c
+mapMonotonicR :: Ord c => (b -> c) -> Bimap a b -> Bimap a c
 mapMonotonicR f (MkBimap left right) =
     MkBimap (M.map f left) (M.mapKeysMonotonic f right)
 
